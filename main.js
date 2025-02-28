@@ -18,7 +18,8 @@ const render=()=>{
           <div class="news-img col-lg-4">
             <img
               class="news-img-size"
-              src="${news.urlToImage || "https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg"}"/>
+              src="${news.urlToImage || 'https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg'}"
+              onerror="this.onerror=null; this.src='https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg';"/>
           </div>
           <div class="col-lg-8">
             <h2>${news.title}</h2>
