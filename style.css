@@ -8,7 +8,7 @@
     width: 430px;
 }
 
-.menus{
+.hor-menu{
     margin-top: 1em;
     display: flex;
     justify-content: center;
@@ -17,13 +17,13 @@
     border-bottom: 4px double black;
 }
 
-.menus button{
+.hor-menu button{
     border: none;
     background: none;
     margin: 5px;
 }
 
-.menus button:hover{
+.hor-menu button:hover{
     background-color: rgb(243, 243, 243);
 }
 
@@ -61,8 +61,8 @@
         display: block;
     }
 
-    .menus{
-        display: none;
+    .hor-menu{
+        visibility: hidden;
     }
 }
 
