@@ -134,29 +134,27 @@ const openNav = () => {
 
     let paginationHTML=``
 
+    if(page <=groupSize && page>1){
+      paginationHTML = `<li class="page-item" onclick="moveToPage(1)"><a class="page-link" href="#"> &lt;&lt; </a></li>
+      <li class="page-item" onclick="moveToPage(${page - 1})"><a class="page-link" href="#">&lt;</a></li>`;
+    } else if (page > groupSize) {
+      paginationHTML = `<li class="page-item" onclick="moveToPage(${firstPage - groupSize})"><a class="page-link" href="#"> &lt;&lt; </a></li>
+          <li class="page-item" onclick="moveToPage(${page - 1})"><a class="page-link" href="#">&lt;</a></li>`;
+  }
+
     for(let i=firstPage; i<=lastPage; i++){
-      paginationHTML+= `<li class="page-item ${i===page? "active":""}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
+      paginationHTML+=
+       `<li class="page-item ${i===page? "active":""}" onclick="moveToPage(${i})"><a class="page-link" href="#">${i}</a></li>`
     }
 
-    document.querySelector(".pagination").innerHTML = paginationHTML
+    if (page < totalPages-groupSize) {
+      paginationHTML += `<li class="page-item" onclick="moveToPage(${page + 1})"><a class="page-link" href="#"> &gt; </a></li>
+          <li class="page-item" onclick="moveToPage(${firstPage +groupSize})"><a class="page-link" href="#"> &gt;&gt; </a></li>`;
+  } else if(page > totalPages-groupSize && page < totalPages){
+    paginationHTML += `<li class="page-item" onclick="moveToPage(${page + 1})"><a class="page-link" href="#"> &gt; </a></li>`;
+  }
 
-//     <nav aria-label="Page navigation example">
-//   <ul class="pagination">
-//     <li class="page-item">
-//       <a class="page-link" href="#" aria-label="Previous">
-//         <span aria-hidden="true">&laquo;</span>
-//       </a>
-//     </li>
-//     <li class="page-item"><a class="page-link" href="#">1</a></li>
-//     <li class="page-item"><a class="page-link" href="#">2</a></li>
-//     <li class="page-item"><a class="page-link" href="#">3</a></li>
-//     <li class="page-item">
-//       <a class="page-link" href="#" aria-label="Next">
-//         <span aria-hidden="true">&raquo;</span>
-//       </a>
-//     </li>
-//   </ul>
-// </nav>
+    document.querySelector(".pagination").innerHTML = paginationHTML
   }
 
 const moveToPage = (pageNum) =>{
