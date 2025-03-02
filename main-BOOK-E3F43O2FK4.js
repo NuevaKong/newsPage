@@ -1,6 +1,6 @@
 let newsList = []
-let menus = document.querySelectorAll(".menus button")
-let sideMenus = document.querySelectorAll(".menus-side button")
+const menus = document.querySelectorAll(".menus button")
+const sideMenus = document.querySelectorAll(".menus-side button")
 menus.forEach(menu => menu.addEventListener("click", (event)=>  getNewsByCategory(event)))
 sideMenus.forEach(menu => menu.addEventListener("click", (event)=> getNewsBySideCategory(event)))
 let url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr`)
@@ -14,8 +14,8 @@ const getNews = async ()=> {
     url.searchParams.set("page", page) // => &page = page
     url.searchParams.set("pageSize", pageSize)
 
-    let response = await fetch(url)
-    let data = await response.json()
+    const response = await fetch(url)
+    const data = await response.json()
     console.log("ddd",data)
     if(response.status === 200){
       if(data.articles.length === 0){
@@ -26,17 +26,10 @@ const getNews = async ()=> {
       render()
       paginationRender()
     } else{
-      totalPages = 0
-      page = 0
-      paginationRender()
       throw new Error(data.message)
     }
   } catch(error){
     errorRender(error.message)
-    totalPages = 0
-    page = 0
-    paginationRender()
-
   }
 }
 
@@ -50,7 +43,6 @@ getLatestNews();
 const getNewsByCategory = async (event)=>{
   const category = event.target.textContent.toLowerCase()
   console.log("category ", category)
-  page = 1
   url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&category=${category}`)
   getNews()
 }
@@ -58,7 +50,6 @@ const getNewsByCategory = async (event)=>{
 const getNewsBySideCategory = async (event)=>{
   const category = event.target.textContent.toLowerCase()
   console.log("category", category)
-  page = 1
   url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&category=${category}`)
   getNews()
   closeNav()
@@ -127,9 +118,9 @@ const openNav = () => {
     
     const totalPages = Math.ceil(totalResults/pageSize)
 
-    let pageGroup = Math.ceil(page/groupSize)
+    const pageGroup = Math.ceil(page/groupSize)
 
-    let lastPage = pageGroup*groupSize
+    const lastPage = pageGroup*groupSize
 
     if (lastPage > totalPages){
       lastPage = totalPages
