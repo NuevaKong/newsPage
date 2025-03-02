@@ -134,11 +134,8 @@ const openNav = () => {
 
     let paginationHTML=``
 
-    if(page <=groupSize && page>1){
+    if (page > 1) {
       paginationHTML = `<li class="page-item" onclick="moveToPage(1)"><a class="page-link" href="#"> &lt;&lt; </a></li>
-      <li class="page-item" onclick="moveToPage(${page - 1})"><a class="page-link" href="#">&lt;</a></li>`;
-    } else if (page > groupSize) {
-      paginationHTML = `<li class="page-item" onclick="moveToPage(${firstPage - groupSize})"><a class="page-link" href="#"> &lt;&lt; </a></li>
           <li class="page-item" onclick="moveToPage(${page - 1})"><a class="page-link" href="#">&lt;</a></li>`;
   }
 
@@ -147,11 +144,9 @@ const openNav = () => {
        `<li class="page-item ${i===page? "active":""}" onclick="moveToPage(${i})"><a class="page-link" href="#">${i}</a></li>`
     }
 
-    if (page < totalPages-groupSize) {
+    if (page < totalPages) {
       paginationHTML += `<li class="page-item" onclick="moveToPage(${page + 1})"><a class="page-link" href="#"> &gt; </a></li>
-          <li class="page-item" onclick="moveToPage(${firstPage +groupSize})"><a class="page-link" href="#"> &gt;&gt; </a></li>`;
-  } else if(page > totalPages-groupSize && page < totalPages){
-    paginationHTML += `<li class="page-item" onclick="moveToPage(${page + 1})"><a class="page-link" href="#"> &gt; </a></li>`;
+          <li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link" href="#"> &gt;&gt; </a></li>`;
   }
 
     document.querySelector(".pagination").innerHTML = paginationHTML
